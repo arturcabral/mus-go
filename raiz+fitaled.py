@@ -1,3 +1,7 @@
+#FAZER:
+#Ajustar a função percorrerLed para apagar os leds no final da fita 
+
+
 import random
 
 class Arvore:
@@ -16,10 +20,6 @@ class Arvore:
             print(self.arvore[i])
     
     def criar_caminho(self):
-
-
-
-
         
         posicao = 1
         valoresFita = []
@@ -28,6 +28,7 @@ class Arvore:
                  #print("Inicio" + " peso " + str(i))  # peso da aresta
                  valoresFita = [posicao,i]
                  print("FITA:" + str(valoresFita))
+                 percorrerLed(valoresFita[0],valoresFita[1]) #função para gerar animação na fita
 
         for j in range(self.vertices): #percorre o caminho
             caminhos = {}
@@ -55,19 +56,37 @@ class Arvore:
                 valoresFita = [caminhoEscolhido, valorCaminho]
                 #print("caminho escolhido/vertice:" + str(caminhoEscolhido) + " indice/peso:" + str(valorCaminho))
                 print("FITA:" + str(valoresFita))
+                percorrerLed(valoresFita[0],valoresFita[1])
                 posicao = caminhoEscolhido
             
             if j == self.vertices -1:
                 print("Fim raiz")
 
+ 
+def percorrerLed (e,t): #recebe o endereço da fita e o tamanho dela
+    pesoIni = 18
+    
+    fita =[0]* t #contrutor da fita
+    fita[0] = pesoIni #adiciona peso inicial (força do LED)
+    print("Fita " + str(e))
+    print(fita)
+    for n, i in enumerate(fita): #varre a lista
+        if not i == 0: # procura onde está o pixel
+            valTemp = fita[n]
+            fita[n] = 0
+    
+            if (len(fita) -1 > n):   # passa para proxima casa e diminui o peso
+                if valTemp > 1:
+                    fita[n+1] = valTemp - 1
+                else:
+                    fita[n+1] =  0
+                print(fita)    
 
 
-    #escolher possibilidade
-    #volta e verifica as possibilidades 
 
-a = Arvore(8)
+a = Arvore(8) #numeros de fitas na árvore
 
-a.add_arestas(1,2,14)
+a.add_arestas(1,2,14) # setando arestas e tamnanho das fitas
 a.add_arestas(2,3,13)
 a.add_arestas(2,4,12)
 
@@ -79,7 +98,7 @@ a.add_arestas(7,8,15)
 
 
 
-a.mostra_matriz()
+#a.mostra_matriz()
 a.criar_caminho()
 
 
