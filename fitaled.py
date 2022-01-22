@@ -2,8 +2,10 @@
 # receber tamanho fita e qual vertice.
 
 
-fita1 = [10,0,0,0,0,0,0,0]
-#print(fita1)
+fita1= [0]*6 #contrutor fita 1
+fita1[0]=10  #add primeiro peso
+
+print(fita1)
 
 for n, i in enumerate(fita1): #varre a lista
     if not i == 0: # procura onde está o pixel
