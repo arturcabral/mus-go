@@ -1,6 +1,6 @@
 #FAZER:
 #Ajustar a função percorrerLed para apagar os leds no final da fita 
-
+#Passar peso para a próxima fita
 
 import random
 
@@ -81,6 +81,7 @@ def percorrerLed (e,t): #recebe o endereço da fita e o tamanho dela
                 else:
                     fita[n+1] =  0
                 print(fita)    
+
 
 
 
