@@ -16,35 +16,41 @@ class Arvore:
             print(self.arvore[i])
     
     def criar_caminho(self):
-        for i in self.arvore[0]:
-             if (i != 0):
-                 print("Inicio")  # colocar tamanho
-
         posicao = 1
+        valoresFita = []
+        for i in self.arvore[0]: #busca na primeira linha o primeiro peso
+             if (i != 0):
+                 print("Inicio" + " peso " + str(i))  # peso da aresta
+                 valoresFita = [posicao,i]
+                 print("FITA:" + str(valoresFita))
 
-        for j in range(self.vertices):
+        for j in range(self.vertices): #percorre o caminho
             caminhos = {}
             controle = False
             for i,v in enumerate(self.arvore[posicao]):
                 if (v != 0): # se o valor for diferente de zero
                     print("encontei")
                     controle = True  
-                    #print(str(i) + " " + str(v)) # imprime o indice e o valor
+                    print(str(i) + " " + str(v)) # imprime o indice(vertice) e o valor (peso)
                     caminhos[i] = v
-                else:
-                    print("nada encontrado")
+                #else:
+                    #print("nada encontrado")
 
             if not controle:
                 print("FIM DO CAMINHO")
                 break
-            else:
-                print("caminhos encontados:" + str(caminhos) + " em " + str(posicao))
+            else: #seleciona o caminho
+                #print("caminhos encontados:" + str(caminhos) + " em " + str(posicao))
+                print("caminhos" + str(caminhos))
+                print("caminho chave" + str(list(caminhos.keys())))
                 caminhoEscolhido = random.choice(list(caminhos.keys()))
-                print(caminhos)
-                print(caminhoEscolhido)
-                indiceCaminho = caminhos[caminhoEscolhido] 
-                print("caminho escolhido:" + str(caminhoEscolhido) + " indice:" + str(indiceCaminho + 1))
-                posicao = indiceCaminho
+                #print(caminhos)
+                #print(caminhoEscolhido)
+                valorCaminho = caminhos[caminhoEscolhido] 
+                valoresFita = [caminhoEscolhido, valorCaminho]
+                print("caminho escolhido/vertice:" + str(caminhoEscolhido) + " indice/peso:" + str(valorCaminho))
+                print("FITA:" + str(valoresFita))
+                posicao = caminhoEscolhido
             
             if j == self.vertices -1:
                 print("Fim raiz")
@@ -57,7 +63,7 @@ class Arvore:
 a = Arvore(8)
 
 a.add_arestas(1,2,4)
-a.add_arestas(2,3,3)
+a.add_arestas(2,3,13)
 a.add_arestas(2,4,2)
 
 a.add_arestas(4,5,1)
