@@ -2,18 +2,26 @@
 # receber tamanho fita e qual vertice.
 
 
-fita1 = [0,0,1,0,0,0]
+fita1 = [10,0,0,0,0,0,0,0]
 #print(fita1)
 
 for n, i in enumerate(fita1):
-    if i == 1:
+    if not i == 0:
+        valTemp = fita1[n]
         fita1[n] = 0
         #print("achei")
         #print(n)
+
         
-        if (len(fita1) -1 > n):   # muda pra um o próximo  
-            fita1[n+1] = 1
+        if (len(fita1) -1 > n):   
+            if valTemp > 1:
+                fita1[n+1] = valTemp - 1
+            else:
+                fita1[n+1] =  0
+
         print(fita1)    
+
+
 
 
 
