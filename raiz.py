@@ -20,7 +20,7 @@ class Arvore:
         valoresFita = []
         for i in self.arvore[0]: #busca na primeira linha o primeiro peso
              if (i != 0):
-                 print("Inicio" + " peso " + str(i))  # peso da aresta
+                 #print("Inicio" + " peso " + str(i))  # peso da aresta
                  valoresFita = [posicao,i]
                  print("FITA:" + str(valoresFita))
 
@@ -29,9 +29,9 @@ class Arvore:
             controle = False
             for i,v in enumerate(self.arvore[posicao]):
                 if (v != 0): # se o valor for diferente de zero
-                    print("encontei")
+                    #print("encontei")
                     controle = True  
-                    print(str(i) + " " + str(v)) # imprime o indice(vertice) e o valor (peso)
+                    #print(str(i) + " " + str(v)) # imprime o indice(vertice) e o valor (peso)
                     caminhos[i] = v
                 #else:
                     #print("nada encontrado")
@@ -41,14 +41,14 @@ class Arvore:
                 break
             else: #seleciona o caminho
                 #print("caminhos encontados:" + str(caminhos) + " em " + str(posicao))
-                print("caminhos" + str(caminhos))
-                print("caminho chave" + str(list(caminhos.keys())))
+                #print("caminho" + str(caminhos))
+                #print("caminho chave" + str(list(caminhos.keys())))
                 caminhoEscolhido = random.choice(list(caminhos.keys()))
                 #print(caminhos)
                 #print(caminhoEscolhido)
                 valorCaminho = caminhos[caminhoEscolhido] 
                 valoresFita = [caminhoEscolhido, valorCaminho]
-                print("caminho escolhido/vertice:" + str(caminhoEscolhido) + " indice/peso:" + str(valorCaminho))
+                #print("caminho escolhido/vertice:" + str(caminhoEscolhido) + " indice/peso:" + str(valorCaminho))
                 print("FITA:" + str(valoresFita))
                 posicao = caminhoEscolhido
             
@@ -62,15 +62,15 @@ class Arvore:
 
 a = Arvore(8)
 
-a.add_arestas(1,2,4)
+a.add_arestas(1,2,14)
 a.add_arestas(2,3,13)
-a.add_arestas(2,4,2)
+a.add_arestas(2,4,12)
 
-a.add_arestas(4,5,1)
-a.add_arestas(4,6,1)
-a.add_arestas(4,7,1)
+a.add_arestas(4,5,11)
+a.add_arestas(4,6,11)
+a.add_arestas(4,7,11)
 
-a.add_arestas(7,8,2)
+a.add_arestas(7,8,15)
 
 
 
