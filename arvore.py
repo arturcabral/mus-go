@@ -74,9 +74,12 @@ def percorrerLed (e,t): #recebe o endereço da fita e o tamanho dela
             valTemp = fita[n]
             fita[n] = 0
     
-            if (len(fita) -1 > n):   # passa para proxima casa e diminui o peso
+            if (len(fita) -1 > n):   # se a posição do led for menor que o tamanho da fita -1 
                 if valTemp > 1:
-                    fita[n+1] = valTemp - 1
+                    fita[n+1] = valTemp - 1  # passa para proxima casa e diminui o peso
                 else:
                     fita[n+1] =  0
-                print(fita)    
+            else:
+                fita[n] = 0  
+            print(fita) # printa estado fita
+
