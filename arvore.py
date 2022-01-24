@@ -1,5 +1,5 @@
 #FAZER:
-#Ajustar a função percorrerLed para apagar os leds no final da fita 
+# add biblioteca led
 
 import random
 
