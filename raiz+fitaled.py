@@ -2,7 +2,7 @@
 #Ajustar a função percorrerLed para apagar os leds no final da fita 
 #Passar peso para a próxima fita
 
-import random
+import random, math
 
 class Arvore:
 
@@ -49,7 +49,10 @@ class Arvore:
                 #print("caminhos encontados:" + str(caminhos) + " em " + str(posicao))
                 #print("caminho" + str(caminhos))
                 #print("caminho chave" + str(list(caminhos.keys())))
-                caminhoEscolhido = random.choice(list(caminhos.keys()))
+                
+                caminhoEscolhido = altChoice(list(caminhos.keys())) #versaoChoice
+
+                #caminhoEscolhido = random.choice(list(caminhos.keys())) #nao suporta esp8266
                 #print(caminhos)
                 #print(caminhoEscolhido)
                 valorCaminho = caminhos[caminhoEscolhido] 
@@ -80,9 +83,22 @@ def percorrerLed (e,t): #recebe o endereço da fita e o tamanho dela
                     fita[n+1] = valTemp - 1
                 else:
                     fita[n+1] =  0
-                print(fita)    
+                print(fita)
 
+#choice alternative
+def translate(value, leftMin, leftMax, rightMin, rightMax):
+    leftSpan = leftMax - leftMin
+    rightSpan = rightMax - rightMin
+    valueScaled = float(value - leftMin)/ float(leftSpan)
+    return rightMin + (valueScaled * rightSpan)
 
+def altChoice(lista):
+        randomBits = random.getrandbits(16)
+        ceiling = len(lista)
+        num = translate(randomBits, 0, 65535, 0 , ceiling)
+        choice = lista[math.floor(num)]
+        return choice
+        
 
 
 a = Arvore(8) #numeros de fitas na árvore

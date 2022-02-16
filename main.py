@@ -1,3 +1,4 @@
+#add função altChoice
 from arvore import Arvore
 
 #  <GRAFO MODELO>
