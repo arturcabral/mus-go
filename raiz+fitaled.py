@@ -101,9 +101,23 @@ def altChoice(lista):
         
 
 
-a = Arvore(8) #numeros de fitas na árvore
+#  <GRAFO MODELO>
+#        1 <vértice de início>
+#        | 2 
+#        |
+#       / \
+#      /   \
+#   3 /     \ 4
+#          /|\
+#         / | \
+#      5 /  |6 \ 7
+#               |
+#               | 8     
 
-a.add_arestas(1,2,14) # setando arestas e tamnanho das fitas
+
+a = Arvore(8) #numeros de vertices( vertices = fita + 1) na árvore
+
+a.add_arestas(1,2,14) # setando arestas (verticeA, verticeB, Tamanho Fita)
 a.add_arestas(2,3,13)
 a.add_arestas(2,4,12)
 
