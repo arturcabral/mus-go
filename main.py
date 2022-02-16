@@ -2,22 +2,22 @@
 from arvore import Arvore
 
 #  <GRAFO MODELO>
-#
-#        | 1 
+#        1 <vértice de início>
+#        | 2 
 #        |
 #       / \
 #      /   \
-#   2 /     \ 3
+#   3 /     \ 4
 #          /|\
 #         / | \
-#      4 /  |5 \ 6
+#      5 /  |6 \ 7
 #               |
-#               | 7       
+#               | 8     
 
 
-a = Arvore(8) #Criando objeto Arvore com o numeros de fitasLed
+a = Arvore(8) #numeros de vertices( vertices = fita + 1) na árvore
 
-a.add_arestas(1,2,14) # setando arestas e tamnanho das fitas
+a.add_arestas(1,2,14) # setando arestas (verticeA, verticeB, Tamanho Fita)
 a.add_arestas(2,3,13)
 a.add_arestas(2,4,12)
 
@@ -30,5 +30,3 @@ a.add_arestas(7,8,15)
 
 #a.mostra_matriz()
 a.criar_caminho()
-
- 
