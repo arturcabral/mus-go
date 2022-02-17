@@ -1,5 +1,14 @@
-import random, math, machine, neopixel, time
-np = neopixel.NeoPixel(machine.Pin(4), 27, timing=1)
+import random, math, time
+DebugMode = 1
+PinoFitas = 4 
+PercorrerT = 1 #Tempo em segundos de delay dos leds
+
+
+if(not DebugMode):
+    import machine, neopixel
+    np = neopixel.NeoPixel(machine.Pin(PinoFitas), 27, timing=1)
+
+
 class Arvore:
 
     def __init__(self, vertices):
@@ -42,7 +51,7 @@ class Arvore:
                     #print("nada encontrado")
 
             if not controle:
-                print("FIM DO CAMINHO")
+                print("FIM DA ARVORE")
                 break
             else: #seleciona o caminho
                 #print("caminhos encontados:" + str(caminhos) + " em " + str(posicao))
@@ -76,20 +85,19 @@ def percorrerLed (e,t,c): #recebe o endereço da fita , tamanho dela e ditado do
     Tfitas = list(c.values())
    
     
-    print("caminho total" + str(c))
-    print("tamanho fitas " + str(len(Tfitas)))
-    print("Numero fita  " + str(e))
-    print("total " + str(valorTotalA))
+    #print("caminho total" + str(c))
+    #print("tamanho fitas " + str(len(Tfitas)))
+    #print("Numero fita  " + str(e))
+    #print("total " + str(valorTotalA))
     for i in range(e-1):
-        valorTotalA = valorTotalA + Tfitas[i]
+        valorTotalA = valorTotalA + Tfitas[i] #calcula do valor total de led no caminho atual
     
     posInit = valorTotalA #pega a posição inicial da fita atual
-    print("Posição init  " + str(posInit))
 
     fita =[0]* t #contrutor da fita
     fita[0] = pesoIni #adiciona peso inicial (força do LED)
-    print("Fita " + str(e))
-    print(fita) #printa fita
+    #print("Fita " + str(e))
+    print(fita) #printa array fita
 
     for n, i in enumerate(fita): #varre a lista
         if not i == 0: # procura onde está o pixel
@@ -105,16 +113,24 @@ def percorrerLed (e,t,c): #recebe o endereço da fita , tamanho dela e ditado do
                 #varrer a lista onde não for zero eu acendo o led.
                 for n, i in enumerate(fita):
                     if i != 0:
-                     #apaga o anterior
-                     posPixel = n + posInit
-                     if (np[posPixel -1 ] == (0, 255, 0)):
-                         np[posPixel -1] = (0,0,0)
-                     #acende o pixel
-                     np[posPixel] = (0,255, 0)
-                     print("neopixel.on" + str(posPixel))
-                     #atualiza o neopixel
-                     time.sleep(1) #delay
-                     np.write()
+                        posPixel = n + posInit
+                        print("neopixel.on[" + str(posPixel)+ ']')
+                        if (not DebugMode):
+                            #apaga o anterior
+                            if (np[posPixel -1 ] == (0, 255, 0)):
+                                 np[posPixel -1] = (0,0,0)
+                            #acende o pixel
+                            np[posPixel] = (0,255, 0)
+                            #atualiza o neopixel
+                            time.sleep(PercorrerT) #delay
+                            np.write() #atualiza fita
+    print(fita)
+    ultimoPixel = posInit + len(fita) - 1 # calcula o último pixel da fita
+    print("neopixel.off[" + str(ultimoPixel) + "]") #desliga o último pixel.
+    if (not DebugMode):
+        np[ultimoPixel] = (0,0,0)
+        time.sleep(PercorrerT)
+        np.write()
 
 
 #choice alternative
@@ -150,6 +166,4 @@ a.add_arestas(1,2,4) # setando arestas (verticeA, verticeB, Tamanho Fita)
 a.add_arestas(2,3,12)
 a.add_arestas(2,4,12)
 
-
 a.criar_caminho()
-
